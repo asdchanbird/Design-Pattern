@@ -6,8 +6,8 @@ import { BranchOrganizationTest } from './composables/合成模式Composite'
 
 // let facade = new VedioRoomFacade()
 
-let composite = new BranchOrganizationTest()
-composite.test()
+// let composite = new BranchOrganizationTest()
+// composite.test()
 // ddw.trainAdventurer()
 </script>
 <template>
