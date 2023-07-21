@@ -18,7 +18,7 @@ interface Wizard {
 
 // 轉接器 (Adapter)
 class Adapter implements Wizard {
-    private archer: ArcherAdaptee | undefined
+    private archer!: ArcherAdaptee
 
     constructor(archer: ArcherAdaptee) {
         this.archer = archer
@@ -31,3 +31,48 @@ class Adapter implements Wizard {
         console.log('火球飛出去了')
     }
 }
+
+// --------------------------------------------------------------------
+// 範例2
+class target {
+    request(): string {
+        return `Target : The default target's behavior.`
+    }
+}
+
+class Adaptee2 {
+    specificRequest():string {
+        return '.eetpadA eht fo roivaheb laicepS'
+    }
+}
+
+class Adapter2 extends target {
+    private adaptee!: Adaptee2
+
+    constructor(adaptee: Adaptee2) {
+        super()
+        this.adaptee = adaptee
+    }
+    public request(): string {
+        const result = this.adaptee.specificRequest().split('').reverse().join('');
+        return `Adapter: (TRANSLATED) ${result}`;   
+    }
+}
+
+
+function clientCode(target: target): void {
+    console.log(target.request())
+}
+const targetobj = new target()
+
+
+
+const adapteee = new Adaptee2()
+console.log('Client: The Adaptee class has a weird interface. See, I don\'t understand it:');
+console.log(`Adaptee: ${adapteee.specificRequest()}`);
+
+console.log('');
+
+console.log('Client: But I can work with it via the Adapter:');
+const adapter2 = new Adapter2(adapteee);
+clientCode(adapter2);
